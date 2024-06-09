@@ -12,7 +12,7 @@ import (
 const defaultPort uint16 = 4040
 
 func main() {
-    iface := "eth0" // Change this to your network interface
+    iface := "lo"
     port := defaultPort
 
     if len(os.Args) > 1 {
@@ -24,8 +24,8 @@ func main() {
     }
 
     // Load eBPF program
-    objs := ebpfObjects{}
-    if err := loadEbpfObjects(&objs, nil); err != nil {
+    objs := xdpDropTcpObjects{}
+    if err := loadXdpDropTcpObjects(&objs, nil); err != nil {
         log.Fatalf("loading objects: %v", err)
     }
     defer objs.Close()
@@ -44,7 +44,6 @@ func main() {
 
     link, err := link.AttachXDP(link.XDPOptions{
         Program:   objs.XdpDropTcp,
-        AttachMode: link.XdpAttachMode(link.XDPAttachGeneric),
         Interface: nlLink.Attrs().Index,
     })
     if err != nil {
