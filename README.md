@@ -1,6 +1,6 @@
 A demonstration on how to drop TCP packets on a specific port (default: 4040) using ebpf.
 
-**PREREQUISITES**
+<h4>PREREQUISITES</h4>
 
 1. <b>Linux System with eBPF and XDP Support</b>:
 
@@ -13,7 +13,7 @@ A demonstration on how to drop TCP packets on a specific port (default: 4040) us
     <b>clang and llvm</b>: Required to compile the eBPF program.
     <b>go</b>: The Go programming language compiler (version 1.18 or later recommended).
 
-**USAGE**
+<h4>USAGE</h4>
 
 1. cd into the cmd directory
    ```bash
